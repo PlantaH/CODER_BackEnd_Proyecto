@@ -1,0 +1,31 @@
+API DESCRIPTION
+
+method: POST 
+    http://localhost:8080/productos ---> Alta
+    {
+        "nombre" : "guitarra",
+        "descripcion" : "6 cuerdas",
+        "codigo": "123",
+        "precio": 200,
+        "stock": 1,
+        "thumb" : "url de la foto"
+    }
+
+method: GET
+    http://localhost:8080/productos/ ---> Lista todos los productos
+
+    http://localhost:8080/productos/1 ---> Lista por id 
+
+method: DELETE
+    http://localhost:8080/productos/1 ---> Elimina un producto por id
+
+method: PUT 
+    http://localhost:8080/productos/1 ---> Modifica un item por id 
+    {
+        "nombre" : "guitarra",
+        "descripcion" : "6 cuerdas",
+        "codigo": "123",
+        "precio": 200,
+        "stock": 1,
+        "thumb" : "url de la foto"
+    }
