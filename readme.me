@@ -1,5 +1,9 @@
 API DESCRIPTION
 
+/*********************************************************************************************************************************/
+PRODUCTOS
+---------
+
 method: POST 
     http://localhost:8080/productos ---> Alta
     {
@@ -30,6 +34,10 @@ method: PUT
         "thumb" : "url de la foto"
     }
 
+/*********************************************************************************************************************************/
+CARRITO
+-------
+
 method : POST
 http://localhost:8080/carrito/  ---> crea un carrito
 
@@ -40,7 +48,10 @@ http://localhost:8080/carrito/1/productos     ---> agrega items a un carrito
     }
 
 method : GET
-http://localhost:8080/carrito/2/productos ---> Lista todos los productos de un carrito
+http://localhost:8080/carrito/1/productos ---> Lista todos los productos de un carrito
 
 method: DELETE
     http://localhost:8080/carrito/1 ---> Elimina un carrito por id
+
+method: DELETE
+    http://localhost:8080/carrito/1/productos/1 ---> Elimina un carrito por id

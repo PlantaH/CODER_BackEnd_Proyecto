@@ -1,6 +1,7 @@
  
 
-const fs = require('fs')
+const fs = require('fs');
+const { isExternal } = require('util/types');
 
  
 /*CLASES*/
@@ -8,7 +9,7 @@ const fs = require('fs')
     constructor() {
         this.id = 0;
         this.timestamp = ''; 
-        this.productos = [];
+        this.productos = null;
     }
 }
 
@@ -127,6 +128,42 @@ module.exports =  class contenedor_cart{
             data = false
         }
         
+        return data  
+    }
+
+    deleteByItemId(id, itemId){
+        let data = null
+        
+        try {                             
+            let objs = JSON.parse(   fs.readFileSync(this.fileName,'utf-8')   )  
+
+            if(objs.filter(e => e.id == id) != 0) {
+                objs.map(function(dato){
+                    if(dato.id == id){ 
+                        const items = dato.productos
+                        const newItems = []
+                        
+                        items.map(function(ite){                                
+                            ite.map(function(c){
+                                if (c.id != itemId) newItems.push(ite);
+                            }) 
+                        })      
+                        
+                        dato.productos = newItems
+
+                        data =  true 
+                    }   
+                });
+
+ 
+                fs.writeFileSync(this.fileName, JSON.stringify(objs, null, 2))
+                    
+                  
+            }          
+        } catch (err) {
+            data =  null     
+        }
+
         return data  
     }
 }

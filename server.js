@@ -144,9 +144,16 @@ carrito.delete('/:id', validateFieldId, (req, res) => {
         res.status(200).send('{ "sucess" : "sucess"}')
     else
         res.status(500).send('{ "error" : "carrito no encontrado"}')
-     
-  
 })
+
+// http://localhost:8080/carrito/1
+carrito.delete('/:id/productos/:id_prod', validateFieldId, (req, res) => {      
+    if ( file_cart.deleteByItemId(req.params.id, req.params.id_prod) )
+        res.status(200).send('{ "sucess" : "sucess"}')
+    else
+        res.status(500).send('{ "error" : "carrito no encontrado"}')
+})
+
 
 app.use('/carrito', carrito) 
 
