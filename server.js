@@ -2,6 +2,9 @@ const express = require('express')
 const contenedor_items = require("./api/items.js")
 const file_items = new contenedor_items('./api/items.txt')
 
+const contenedor_cart = require("./api/cart.js")
+const file_cart = new contenedor_cart('./api/cart.txt') 
+
 const administrator = true
 
 const { Router } = express
@@ -97,8 +100,52 @@ app.use('/productos', productos)
 const carrito = Router() 
 
 // http://localhost:8080/carrito/
-carrito.get('/', (req, res) => {  
-    res.send(file_items.getAll())
+carrito.post('/', (req, res) => {  
+       
+    let item =  file_cart.save()
+    
+    if (!item) 
+        res.status(500).send('{ "error" : "error de grabacion"}')
+    else
+        res.status(200).send('{ "id" : ' + item + ', "sucess" : "sucess"}')  
+    
+})
+
+// http://localhost:8080/carrito/1/productos
+carrito.get('/:id/productos', (req, res) => {  
+    
+   res.status(200).send(file_cart.getCart(req.params.id))
+
+    
+})
+
+
+// http://localhost:8080/carrito/1/productos
+carrito.post('/:id/productos', (req, res) => {  
+    
+    const itemData = file_items.getById(req.body.itemID) 
+
+    if (itemData.length>0){
+        let item =  file_cart.addItem(req.params.id, itemData)
+
+        if (!item) 
+            res.status(500).send('{ "error" : "error de grabacion"}')
+        else
+            res.status(200).send('{ "id" : ' + item + ', "sucess" : "sucess"}')     
+    } else {
+        res.status(500).send('{ "error" : "no existe el producto"}')
+    }
+    
+})
+
+// http://localhost:8080/carrito/1
+carrito.delete('/:id', validateFieldId, (req, res) => {  
+    if ( file_cart.deleteById(req.params.id) )
+        res.status(200).send('{ "sucess" : "sucess"}')
+    else
+        res.status(500).send('{ "error" : "carrito no encontrado"}')
+     
+  
 })
 
 app.use('/carrito', carrito) 

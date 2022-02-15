@@ -1,6 +1,6 @@
 [
   {
-    "nombre": "guitarra",
+    "nombre": "producto1",
     "descripcion": "6 cuerdas",
     "codigo": "123",
     "precio": 3300,
@@ -8,5 +8,15 @@
     "thumb": "url de la foto",
     "id": 1,
     "timestamp": "14/2/2022 18:02:47"
+  },
+  {
+    "nombre": "producto2",
+    "descripcion": "4 cuerdas",
+    "codigo": "123",
+    "precio": 200,
+    "stock": 1,
+    "thumb": "url de la foto",
+    "id": 2,
+    "timestamp": "15/2/2022 16:16:38"
   }
 ]

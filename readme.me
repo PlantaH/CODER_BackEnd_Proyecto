@@ -29,3 +29,18 @@ method: PUT
         "stock": 1,
         "thumb" : "url de la foto"
     }
+
+method : POST
+http://localhost:8080/carrito/  ---> crea un carrito
+
+method : POST
+http://localhost:8080/carrito/1/productos     ---> agrega items a un carrito
+    {
+        "itemID" : 1         
+    }
+
+method : GET
+http://localhost:8080/carrito/2/productos ---> Lista todos los productos de un carrito
+
+method: DELETE
+    http://localhost:8080/carrito/1 ---> Elimina un carrito por id
