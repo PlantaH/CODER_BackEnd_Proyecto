@@ -1,7 +1,6 @@
  
 
-const fs = require('fs');
-const { isExternal } = require('util/types');
+const fs = require('fs'); 
 
  
 /*CLASES*/

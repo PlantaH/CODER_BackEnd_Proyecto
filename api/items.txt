@@ -18,5 +18,15 @@
     "thumb": "url de la foto",
     "id": 2,
     "timestamp": "15/2/2022 16:16:38"
+  },
+  {
+    "nombre": "producto3",
+    "descripcion": "3 cuerdas",
+    "codigo": "123",
+    "precio": 233,
+    "stock": 2,
+    "thumb": "url de la foto",
+    "id": 3,
+    "timestamp": "15/2/2022 19:37:37"
   }
 ]
