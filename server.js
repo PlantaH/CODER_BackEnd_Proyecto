@@ -15,6 +15,8 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+ 
+
 
 /************************************************************************************************** */
 validateFieldId = (req,res,next) => {    
@@ -52,7 +54,7 @@ productos.post('/', (req, res) => {
         else
             res.status(200).send('{ "id" : ' + item + ', "sucess" : "sucess"}')  
     }else{
-        res.status(500).send('{ "error" : "-1", "descripcion" : "ruta productos, método post no autorizada" }')
+        res.status(400).send('{ "error" : "-1", "descripcion" : "ruta productos, método post no autorizada" }')
     }
 })
 
@@ -74,7 +76,7 @@ productos.delete('/:id', validateFieldId, (req, res) => {
         else
             res.status(500).send('{ "error" : "producto no encontrado"}')
     }else{
-        res.status(500).send('{ "error" : "-1", "descripcion" : "ruta productos, método delete no autorizada" }')
+        res.status(400).send('{ "error" : "-1", "descripcion" : "ruta productos, método delete no autorizada" }')
     }
   
 })
@@ -87,7 +89,7 @@ productos.put('/:id', validateFieldId, (req, res) => {
         else
             res.status(500).send('{ "error" : "error de grabacion"}')
     }else{
-        res.status(500).send('{ "error" : "-1", "descripcion" : "ruta productos, método delete no autorizada" }')
+        res.status(400).send('{ "error" : "-1", "descripcion" : "ruta productos, método delete no autorizada" }')
     }
 })
 
@@ -156,6 +158,14 @@ carrito.delete('/:id/productos/:id_prod', validateFieldId, (req, res) => {
 
 
 app.use('/carrito', carrito) 
+
+app.get('*', (req, res) => {
+    const pathError = {
+        error: -2,
+        descripcion: `Error 404. Ruta ${req.url} metodo ${req.method} no implementado`
+    }
+    res.status(404).send({ "error" : "-2", "descripcion" : "Ruta " + req.url + " metodo " + req.method + " no implementado" })
+});
 
 /************************************************************************************************** */
 //app.use('/static', express.static('public')) //define donde esta los arch estaticos
