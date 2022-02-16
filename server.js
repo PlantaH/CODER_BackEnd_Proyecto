@@ -19,21 +19,21 @@ app.use(express.urlencoded({ extended: true }))
 
 
 /************************************************************************************************** */
-validateFieldId = (req,res,next) => {    
+const validateFieldId = (req,res,next) => {    
     if ( !(Number.isInteger(Number(req.params.id))) ) 
          res.status(500).send('{ "error" : "el campo debe ser numerico"}')
     else     
         next()
 }
 
-validateFieldEmpty = (req,res,next) => {        
+const validateFieldEmpty = (req,res,next) => {        
     if ( !(file_items.getById(req.params.id)) ) 
          res.status(500).send('{ "error" : "producto no encontrado"}')
     else     
         next()
 }
 
-validateBodyId = (req,res,next) => {    
+const validateBodyId = (req,res,next) => {    
     if ( !(Number.isInteger(Number(req.body.id))) ) 
          res.status(500).send('{ "error" : "el campo debe ser numerico"}')
     else     
